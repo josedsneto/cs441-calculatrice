@@ -7,7 +7,7 @@
 
 <target name="package" depends="compile">
   <mkdir dir="build/java"/>
-  <jar destfile="build/java/calculatrice-v1.jar" basedir="build/classes">
+  <jar destfile="build/java/calculatrice-v2.jar" basedir="build/classes">
     <manifest>
       <attribute name="Main-Class" value="fr.esisar.calculatrice.Calculateur"/>
     </manifest>
@@ -15,12 +15,18 @@
 </target>
 
 <target name="run" depends="package">
-  <java jar="build/java/calculatrice-v1.jar" fork="true"/>
+  <java jar="build/java/calculatrice-v2.jar" fork="true"/>
 </target>
 
 <target name="ant" depends="compile">
   <javadoc sourcepath="src" 
-  sourcefiles="src/main/java/fr/esisar/calculatrice/Calculatrice.java,src/main/java/fr/esisar/calculatrice/Calculateur.java" destdir="doc"/>
+  sourcefiles="src/fr/esisar/calculatrice/Calculatrice.java,
+  src/fr/esisar/calculatrice/Calculateur.java,
+  src/fr/esisar/calculatrice/CalculatriceException.java,
+  src/fr/esisar/calculatrice/operations/Ajouter.java,
+  src/fr/esisar/calculatrice/operations/Soustraire.java,
+  src/fr/esisar/calculatrice/operations/Multiplier.java,
+  src/fr/esisar/calculatrice/operations/Diviser.java" destdir="doc"/>
 </target>
 
 <target name="clean-javadoc">
