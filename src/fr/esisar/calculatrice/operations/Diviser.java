@@ -11,7 +11,7 @@ public class Diviser implements Operation {
   }
 
   @Override
-  public Double calculer(Double operande1, Double operande2) {
+  public Double calculer(Double operande1, Double operande2) throws CalculatriceException {
     if (operande2 == 0) {
       throw new CalculatriceException("Division par zéro");
     }
