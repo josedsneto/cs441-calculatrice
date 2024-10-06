@@ -1,13 +1,17 @@
-<project name="compile" basedir="." default="run">
+<project name="calculatrice" basedir="." default="run">
+  <property name="srcdir" value="src"/>
+  <property name="builddir" value="build"/>
+  <property name="classesdir" value="${builddir}/classes"/>
+  <property name="jardir" value="${builddir}/jar"/>
 
 <target name="compile" depends="clean">
-  <mkdir dir="build/classes"/>
-  <javac srcdir="src" destdir="build/classes" includeantruntime="false"/>
+  <mkdir dir="${classesdir}"/>
+    <javac srcdir="${srcdir}" destdir="${classesdir}" includeantruntime="false"/>
 </target>
 
 <target name="package" depends="compile">
-  <mkdir dir="build/java"/>
-  <jar destfile="build/java/calculatrice-v2.jar" basedir="build/classes">
+  <mkdir dir="${jardir}"/>
+  <jar destfile="${jardir}/${ant.project.name}-v3.jar" basedir="${classesdir}">
     <manifest>
       <attribute name="Main-Class" value="fr.esisar.calculatrice.Calculateur"/>
     </manifest>
@@ -15,18 +19,11 @@
 </target>
 
 <target name="run" depends="package">
-  <java jar="build/java/calculatrice-v2.jar" fork="true"/>
+  <java jar="${jardir}/${ant.project.name}-v3.jar" fork="true"/>
 </target>
 
 <target name="ant" depends="compile">
-  <javadoc sourcepath="src" 
-  sourcefiles="src/fr/esisar/calculatrice/Calculatrice.java,
-  src/fr/esisar/calculatrice/Calculateur.java,
-  src/fr/esisar/calculatrice/CalculatriceException.java,
-  src/fr/esisar/calculatrice/operations/Ajouter.java,
-  src/fr/esisar/calculatrice/operations/Soustraire.java,
-  src/fr/esisar/calculatrice/operations/Multiplier.java,
-  src/fr/esisar/calculatrice/operations/Diviser.java" destdir="doc"/>
+  <javadoc sourcepath="${srcdir}" destdir="doc"/>
 </target>
 
 <target name="clean-javadoc">
@@ -34,7 +31,7 @@
 </target>
 
 <target name="clean">
-  <delete dir="build"/>
+  <delete dir="${builddir}"/>
 </target>
 
 <target name="clean-all" depends="clean,clean-javadoc">

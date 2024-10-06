@@ -6,5 +6,5 @@ public interface Operation {
 
   public String getNom();
 
-  public Double calculer(Double operande1, Double operande2) throws CalculatriceException;
+  public Double calculer(Double[] operandes) throws CalculatriceException;
 }
